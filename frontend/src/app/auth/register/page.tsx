@@ -40,7 +40,7 @@ export default function RegisterPage() {
           </div>
           <div className="form-group">
             <label className="form-label">비밀번호</label>
-            <input id="reg-password" className="input" type="password" placeholder="8자 이상" value={password} onChange={e => setPassword(e.target.value)} required minLength={6} />
+            <input id="reg-password" className="input" type="password" placeholder="8자 이상" value={password} onChange={e => setPassword(e.target.value)} required minLength={8} />
           </div>
           <div className="form-group">
             <label className="form-label">모국어</label>

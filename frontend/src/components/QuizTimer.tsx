@@ -1,6 +1,3 @@
-'use client';
-import { useEffect, useRef } from 'react';
-
 interface Props { total: number; left: number; }
 
 export default function QuizTimer({ total, left }: Props) {

@@ -25,9 +25,13 @@ export default function GamePage() {
   const { sessionId } = useParams<{ sessionId: string }>();
   const router = useRouter();
   const wsRef = useRef<WebSocket | null>(null);
+  const phaseRef = useRef<Phase>('connecting');
 
   const [myId, setMyId] = useState('');
   const [phase, setPhase] = useState<Phase>('connecting');
+
+  // phaseRef를 최신 phase로 항상 동기화 (ws.onclose 클로저 버그 방지)
+  useEffect(() => { phaseRef.current = phase; }, [phase]);
   const [config, setConfig]   = useState({ total_rounds: 0, time_limit_sec: 0 });
   const [round, setRound]     = useState<RoundData | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
@@ -91,7 +95,7 @@ export default function GamePage() {
     };
 
     ws.onerror = () => setPhase('connecting');
-    ws.onclose = () => { if (phase !== 'game_over') setPhase('connecting'); };
+    ws.onclose = () => { if (phaseRef.current !== 'game_over') setPhase('connecting'); };
 
     return () => { clearTimer(); ws.close(); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
