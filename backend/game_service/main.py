@@ -1,10 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routers.game import router as game_router
+from routers.ws import router as ws_router
 
 app = FastAPI(
     title="ObokTy Game Service",
-    description="단어 데이터 관리, WebSocket 기반 실시간 게임 로직 처리",
-    version="0.1.0",
+    description="WebSocket 기반 실시간 언어 퀴즈 게임",
+    version="0.2.0",
 )
 
 app.add_middleware(
@@ -14,6 +16,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(game_router)
+app.include_router(ws_router)
 
 
 @app.get("/health", tags=["health"])
