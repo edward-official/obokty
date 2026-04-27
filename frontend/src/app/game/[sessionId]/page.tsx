@@ -30,7 +30,7 @@ export default function GamePage() {
   const [myId, setMyId] = useState('');
   const [phase, setPhase] = useState<Phase>('connecting');
 
-  // phaseRef를 최신 phase로 항상 동기화 (ws.onclose 클로저 버그 방지)
+  // Keep phaseRef synced with the latest phase (prevent ws.onclose closure bug)
   useEffect(() => { phaseRef.current = phase; }, [phase]);
   const [config, setConfig]   = useState({ total_rounds: 0, time_limit_sec: 0 });
   const [round, setRound]     = useState<RoundData | null>(null);
@@ -128,10 +128,10 @@ export default function GamePage() {
             <div className="anim-spin" style={{ width: 48, height: 48, border: '3px solid var(--border)', borderTopColor: 'var(--primary)', borderRadius: '50%' }} />
             <div>
               <p className="font-outfit fw-600" style={{ fontSize: '1.2rem', marginBottom: 6 }}>
-                {phase === 'connecting' ? '연결 중...' : phase === 'game_start' ? '게임 시작!' : '파트너 대기 중...'}
+                {phase === 'connecting' ? 'Connecting...' : phase === 'game_start' ? 'Game Starting!' : 'Waiting for Partner...'}
               </p>
               <p className="text-muted text-sm">
-                {phase === 'connecting' ? 'WebSocket 연결 중입니다.' : phase === 'game_start' ? '곧 첫 번째 라운드가 시작됩니다.' : '상대방이 준비를 완료하면 게임이 시작됩니다.'}
+                {phase === 'connecting' ? 'Establishing WebSocket connection.' : phase === 'game_start' ? 'First round starting soon.' : 'Game starts when your partner is ready.'}
               </p>
             </div>
           </div>
@@ -147,8 +147,8 @@ export default function GamePage() {
         {phase === 'submitted' && (
           <div className="card center col gap" style={{ padding: 40, textAlign: 'center' }}>
             <div className="anim-pulse" style={{ fontSize: '2rem' }}>⏳</div>
-            <p className="font-outfit fw-600" style={{ fontSize: '1.1rem' }}>파트너 응답 대기 중...</p>
-            {selected && <p className="text-muted text-sm">내 답: <strong style={{ color: 'var(--primary)' }}>{selected}</strong></p>}
+            <p className="font-outfit fw-600" style={{ fontSize: '1.1rem' }}>Waiting for partner's response...</p>
+            {selected && <p className="text-muted text-sm">My Answer: <strong style={{ color: 'var(--primary)' }}>{selected}</strong></p>}
           </div>
         )}
 

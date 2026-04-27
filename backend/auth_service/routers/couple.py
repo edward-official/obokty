@@ -11,7 +11,7 @@ router = APIRouter(prefix="/couple", tags=["couple"])
 def send_couple_request(body: CoupleRequestCreate, current_user: dict = Depends(get_current_user)):
     """상대방 이메일로 커플 연결 요청 전송"""
     if current_user["partner_id"]:
-        raise HTTPException(status_code=400, detail="이미 커플로 연결되어 있습니다.")
+        raise HTTPException(status_code=400, detail="You are already connected with a partner.")
 
     conn = get_connection()
     try:
@@ -20,11 +20,11 @@ def send_couple_request(body: CoupleRequestCreate, current_user: dict = Depends(
             cur.execute("SELECT id FROM users WHERE email = %s", (body.receiver_email,))
             receiver = cur.fetchone()
             if not receiver:
-                raise HTTPException(status_code=404, detail="해당 이메일의 사용자를 찾을 수 없습니다.")
+                raise HTTPException(status_code=404, detail="User with this email not found.")
 
             receiver_id = str(receiver[0])
             if receiver_id == current_user["id"]:
-                raise HTTPException(status_code=400, detail="자기 자신에게 요청을 보낼 수 없습니다.")
+                raise HTTPException(status_code=400, detail="Cannot send a request to yourself.")
 
             # 중복 pending 요청 확인
             cur.execute(
@@ -35,7 +35,7 @@ def send_couple_request(body: CoupleRequestCreate, current_user: dict = Depends(
                 (current_user["id"], receiver_id),
             )
             if cur.fetchone():
-                raise HTTPException(status_code=400, detail="이미 요청을 보냈습니다.")
+                raise HTTPException(status_code=400, detail="Request already sent.")
 
             cur.execute(
                 "INSERT INTO couple_requests (sender_id, receiver_id) VALUES (%s, %s) RETURNING id",
@@ -43,7 +43,7 @@ def send_couple_request(body: CoupleRequestCreate, current_user: dict = Depends(
             )
             request_id = cur.fetchone()[0]
             conn.commit()
-            return {"message": "커플 연결 요청을 보냈습니다.", "request_id": request_id}
+            return {"message": "Couple connection request sent.", "request_id": request_id}
     finally:
         conn.close()
 
@@ -83,7 +83,7 @@ def get_couple_requests(current_user: dict = Depends(get_current_user)):
 def accept_couple_request(request_id: int, current_user: dict = Depends(get_current_user)):
     """커플 연결 요청 수락 → 양방향 partner_id 업데이트"""
     if current_user["partner_id"]:
-        raise HTTPException(status_code=400, detail="이미 커플로 연결되어 있습니다.")
+        raise HTTPException(status_code=400, detail="You are already connected with a partner.")
 
     conn = get_connection()
     try:
@@ -97,7 +97,7 @@ def accept_couple_request(request_id: int, current_user: dict = Depends(get_curr
             )
             row = cur.fetchone()
             if not row:
-                raise HTTPException(status_code=404, detail="요청을 찾을 수 없습니다.")
+                raise HTTPException(status_code=404, detail="Request not found.")
 
             sender_id = str(row[0])
 
@@ -116,7 +116,7 @@ def accept_couple_request(request_id: int, current_user: dict = Depends(get_curr
                 (current_user["id"], sender_id),
             )
             conn.commit()
-            return {"message": "커플 연결이 완료되었습니다."}
+            return {"message": "Couple connection completed."}
     finally:
         conn.close()
 
@@ -135,8 +135,8 @@ def reject_couple_request(request_id: int, current_user: dict = Depends(get_curr
                 (request_id, current_user["id"]),
             )
             if cur.rowcount == 0:
-                raise HTTPException(status_code=404, detail="요청을 찾을 수 없습니다.")
+                raise HTTPException(status_code=404, detail="Request not found.")
             conn.commit()
-            return {"message": "요청을 거절했습니다."}
+            return {"message": "Request rejected."}
     finally:
         conn.close()

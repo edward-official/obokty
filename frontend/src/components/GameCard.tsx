@@ -13,7 +13,7 @@ export default function GameCard({ word, choices, selected, submitted, onSelect 
     <div className="col gap-lg" style={{ width: '100%' }}>
       {/* English word */}
       <div className="card center" style={{ padding: '32px 24px', background: 'linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.10))', border: '1px solid rgba(124,58,237,0.3)' }}>
-        <p className="text-xs text-muted" style={{ marginBottom: 8, letterSpacing: '0.1em', textTransform: 'uppercase' }}>영어 단어</p>
+        <p className="text-xs text-muted" style={{ marginBottom: 8, letterSpacing: '0.1em', textTransform: 'uppercase' }}>English Word</p>
         <h2 className="font-outfit fw-800" style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', letterSpacing: '-0.02em', background: 'linear-gradient(135deg, #fff, #a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           {word}
         </h2>

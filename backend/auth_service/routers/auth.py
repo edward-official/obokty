@@ -15,7 +15,7 @@ def register(user_in: UserCreate):
         with conn.cursor() as cur:
             cur.execute("SELECT id FROM users WHERE email = %s", (user_in.email,))
             if cur.fetchone():
-                raise HTTPException(status_code=400, detail="이미 사용 중인 이메일입니다.")
+                raise HTTPException(status_code=400, detail="Email is already in use.")
 
             hashed = hash_password(user_in.password)
             cur.execute(
@@ -52,7 +52,7 @@ def login(credentials: UserLogin):
             if not row or not verify_password(credentials.password, row[1]):
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="이메일 또는 비밀번호가 올바르지 않습니다.",
+                    detail="Incorrect email or password.",
                 )
             access_token = create_access_token({"sub": str(row[0])})
             return {"access_token": access_token, "token_type": "bearer"}

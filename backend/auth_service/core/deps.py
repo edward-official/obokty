@@ -11,7 +11,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)) -> dict:
     """JWT 토큰으로 현재 유저 조회"""
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="인증 정보가 올바르지 않습니다.",
+        detail="Invalid authentication credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:

@@ -7,7 +7,7 @@ export default function QuizTimer({ total, left }: Props) {
   return (
     <div style={{ width: '100%' }}>
       <div className="row" style={{ justifyContent: 'space-between', marginBottom: 6 }}>
-        <span className="text-xs text-muted">남은 시간</span>
+        <span className="text-xs text-muted">Time Left</span>
         <span className="fw-600" style={{ fontSize: '1.1rem', color, transition: 'color 0.5s' }}>{left}s</span>
       </div>
       <div style={{ height: 6, background: 'var(--border)', borderRadius: 99, overflow: 'hidden' }}>

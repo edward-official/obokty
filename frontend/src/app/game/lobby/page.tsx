@@ -82,7 +82,7 @@ export default function LobbyPage() {
       const session = await createSession(token, rounds, timeSec);
       router.push(`/game/${session.session_id}`);
     } catch (e) {
-      notify(e instanceof Error ? e.message : "오류 발생", true);
+      notify(e instanceof Error ? e.message : "Error occurred", true);
       setLoading(false);
     }
   };
@@ -92,10 +92,10 @@ export default function LobbyPage() {
     if (!token || !partnerEmail) return;
     try {
       await sendCoupleRequest(token, partnerEmail);
-      notify("요청을 보냈습니다! 상대방이 수락하길 기다리세요.", false);
+      notify("Request sent! Wait for your partner to accept.", false);
       setPartnerEmail("");
     } catch (e) {
-      notify(e instanceof Error ? e.message : "오류", true);
+      notify(e instanceof Error ? e.message : "Error", true);
     }
   };
 
@@ -104,7 +104,7 @@ export default function LobbyPage() {
     if (!token) return;
     await acceptCoupleRequest(token, id);
     await loadData(token);
-    notify("커플 연결 완료! 🎉", false);
+    notify("Couple connected! 🎉", false);
   };
 
   const logout = () => {
@@ -155,11 +155,11 @@ export default function LobbyPage() {
         </span>
         <div className="row gap-sm">
           <span className="badge badge-primary">
-            {user.native_language === "ko" ? "🇰🇷 한국어" : "🇵🇱 Polski"}
+            {user.native_language === "ko" ? "🇰🇷 Korean" : "🇵🇱 Polski"}
           </span>
           <span className="text-muted text-sm">{user.email}</span>
           <button className="btn btn-ghost btn-sm" onClick={logout}>
-            로그아웃
+            Log out
           </button>
         </div>
       </div>
@@ -177,18 +177,18 @@ export default function LobbyPage() {
         {/* Game Setup */}
         <div className="card col gap-lg anim-fade-up" style={{ padding: 28 }}>
           <h2 className="font-outfit fw-700" style={{ fontSize: "1.3rem" }}>
-            🎮 게임 설정
+            🎮 Game Setup
           </h2>
           {hasPartner && (
             <div
               className="badge badge-success"
               style={{ width: "fit-content" }}
             >
-              ✓ 커플 연결됨
+              ✓ Couple Connected
             </div>
           )}
           <div className="form-group">
-            <label className="form-label">총 문제 수 (n)</label>
+            <label className="form-label">Total Rounds (n)</label>
             <div className="row gap-sm">
               {[3, 5, 10].map((n) => (
                 <button
@@ -198,13 +198,13 @@ export default function LobbyPage() {
                   style={{ flex: 1 }}
                   disabled={!hasPartner}
                 >
-                  {n}문제
+                  {n} Rounds
                 </button>
               ))}
             </div>
           </div>
           <div className="form-group">
-            <label className="form-label">제한 시간 (t초)</label>
+            <label className="form-label">Time Limit (t sec)</label>
             <div className="row gap-sm">
               {[10, 15, 30].map((t) => (
                 <button
@@ -214,7 +214,7 @@ export default function LobbyPage() {
                   style={{ flex: 1 }}
                   disabled={!hasPartner}
                 >
-                  {t}초
+                  {t} sec
                 </button>
               ))}
             </div>
@@ -235,18 +235,18 @@ export default function LobbyPage() {
               disabled={loading || !hasPartner}
               title={
                 !hasPartner
-                  ? "커플 연결 후 게임을 시작할 수 있습니다"
+                  ? "You can start the game after connecting with your partner"
                   : undefined
               }
             >
-              {loading ? "생성 중..." : "게임 시작 →"}
+              {loading ? "Creating..." : "Start Game →"}
             </button>
             {!hasPartner && (
               <p
                 className="text-xs text-muted"
                 style={{ marginTop: 8, textAlign: "center" }}
               >
-                💑 왼쪽에서 파트너와 연결하면 게임을 시작할 수 있어요
+                💑 Connect with your partner on the right to start the game
               </p>
             )}
           </div>
@@ -259,10 +259,10 @@ export default function LobbyPage() {
             style={{ padding: 28, animationDelay: "0.1s" }}
           >
             <h2 className="font-outfit fw-700" style={{ fontSize: "1.3rem" }}>
-              💑 커플 연결
+              💑 Couple Connection
             </h2>
             <div className="form-group">
-              <label className="form-label">파트너 이메일</label>
+              <label className="form-label">Partner Email</label>
               <input
                 className="input"
                 type="email"
@@ -272,12 +272,12 @@ export default function LobbyPage() {
               />
             </div>
             <button className="btn btn-accent btn-full" onClick={handleRequest}>
-              연결 요청 보내기
+              Send Connection Request
             </button>
             {requests.length > 0 && (
               <>
                 <div className="divider" />
-                <p className="text-sm text-muted fw-600">받은 요청</p>
+                <p className="text-sm text-muted fw-600">Received Requests</p>
                 {requests.map((r) => (
                   <div
                     key={r.id}
@@ -289,7 +289,7 @@ export default function LobbyPage() {
                       className="btn btn-primary btn-sm"
                       onClick={() => handleAccept(r.id)}
                     >
-                      수락
+                      Accept
                     </button>
                   </div>
                 ))}
@@ -313,7 +313,7 @@ export default function LobbyPage() {
             style={{ padding: 28, animationDelay: "0.2s" }}
           >
             <h2 className="font-outfit fw-700" style={{ fontSize: "1.3rem" }}>
-              📊 게임 전적
+              📊 Game History
             </h2>
             {history.slice(0, 5).map((h) => (
               <div
@@ -327,18 +327,18 @@ export default function LobbyPage() {
               >
                 <span className="text-sm text-muted">
                   {h.started_at
-                    ? new Date(h.started_at).toLocaleDateString("ko-KR")
+                    ? new Date(h.started_at).toLocaleDateString()
                     : "-"}
                 </span>
-                <span className="text-sm">{h.total_rounds}라운드</span>
+                <span className="text-sm">{h.total_rounds} Rounds</span>
                 <span
                   className={`badge ${h.winner_id === user.id ? "badge-success" : h.winner_id ? "badge-accent" : "badge-primary"}`}
                 >
                   {h.winner_id === user.id
-                    ? "승리"
+                    ? "Win"
                     : h.winner_id
-                      ? "패배"
-                      : "동점"}
+                      ? "Loss"
+                      : "Draw"}
                 </span>
               </div>
             ))}

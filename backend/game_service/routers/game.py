@@ -17,7 +17,7 @@ def _current_user(token: str = Depends(oauth2_scheme)) -> dict:
 def create_session(body: SessionCreate, current_user: dict = Depends(_current_user)):
     """게임 세션 생성 - 로비에서 n, t 설정 후 호출"""
     if not current_user["partner_id"]:
-        raise HTTPException(status_code=400, detail="커플 연결 후 게임을 시작할 수 있습니다.")
+        raise HTTPException(status_code=400, detail="You must be connected with a partner to start a game.")
 
     conn = get_connection()
     try:

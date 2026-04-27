@@ -34,7 +34,7 @@ export async function register(email: string, password: string, native_language:
   });
   if (!res.ok) {
     const err = await res.json();
-    throw new Error(err.detail ?? '회원가입 실패');
+    throw new Error(err.detail ?? 'Registration failed');
   }
   return res.json();
 }
@@ -47,7 +47,7 @@ export async function login(email: string, password: string): Promise<string> {
   });
   if (!res.ok) {
     const err = await res.json();
-    throw new Error(err.detail ?? '로그인 실패');
+    throw new Error(err.detail ?? 'Login failed');
   }
   const data = await res.json();
   return data.access_token;
@@ -57,7 +57,7 @@ export async function getMe(token: string): Promise<User> {
   const res = await fetch(`${AUTH_URL}/auth/me`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  if (!res.ok) throw new Error('인증 실패');
+  if (!res.ok) throw new Error('Authentication failed');
   return res.json();
 }
 
@@ -69,7 +69,7 @@ export async function sendCoupleRequest(token: string, receiver_email: string) {
   });
   if (!res.ok) {
     const err = await res.json();
-    throw new Error(err.detail ?? '요청 실패');
+    throw new Error(err.detail ?? 'Request failed');
   }
   return res.json();
 }
@@ -80,7 +80,7 @@ export async function getCoupleRequests(token: string) {
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    throw new Error(err.detail ?? '커플 요청 조회 실패');
+    throw new Error(err.detail ?? 'Failed to get couple requests');
   }
   return res.json();
 }
@@ -92,7 +92,7 @@ export async function acceptCoupleRequest(token: string, requestId: number) {
   });
   if (!res.ok) {
     const err = await res.json();
-    throw new Error(err.detail ?? '수락 실패');
+    throw new Error(err.detail ?? 'Accept failed');
   }
   return res.json();
 }
@@ -106,7 +106,7 @@ export async function createSession(token: string, total_rounds: number, time_li
   });
   if (!res.ok) {
     const err = await res.json();
-    throw new Error(err.detail ?? '세션 생성 실패');
+    throw new Error(err.detail ?? 'Failed to create session');
   }
   return res.json();
 }
@@ -117,7 +117,7 @@ export async function getHistory(token: string) {
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    throw new Error(err.detail ?? '전적 조회 실패');
+    throw new Error(err.detail ?? 'Failed to get history');
   }
   return res.json();
 }
