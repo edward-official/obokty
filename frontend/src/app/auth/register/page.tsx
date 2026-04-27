@@ -29,7 +29,7 @@ export default function RegisterPage() {
     <main className="page center" style={{ padding: 24 }}>
       <div className="card anim-pop" style={{ width: '100%', maxWidth: 420, padding: '40px 36px' }}>
         <div className="text-center" style={{ marginBottom: 32 }}>
-          <div className="font-outfit fw-700" style={{ fontSize: '1.8rem', background: 'linear-gradient(135deg, #a78bfa, #06b6d4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 6 }}>ObokTy</div>
+          <div className="font-outfit fw-700" style={{ fontSize: '1.8rem', background: 'linear-gradient(135deg, #6366f1, #0ea5e9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 6 }}>ObokTy</div>
           <p className="text-muted text-sm">Create a new account</p>
         </div>
 

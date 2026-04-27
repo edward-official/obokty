@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 const features = [
-  { icon: '🎯', title: 'Real-time Match', desc: 'Couples see the same word at the same time and choose the answer in their partner\\'s language.' },
-  { icon: '💬', title: 'Language Exchange', desc: 'Korean ↔ Polish. Naturally learn your partner\\'s language.' },
+  { icon: '🎯', title: 'Real-time Match', desc: 'Couples see the same word at the same time and choose the answer in their partner\'s language.' },
+  { icon: '💬', title: 'Language Exchange', desc: 'Korean ↔ Polish. Naturally learn your partner\'s language.' },
   { icon: '🏆', title: 'Couple Records', desc: 'Compete with round-by-round results and accumulated win/loss records.' },
 ];
 
@@ -11,7 +11,7 @@ export default function LandingPage() {
     <main className="page">
       {/* Nav */}
       <nav style={{ padding: '20px 40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border)' }}>
-        <span className="font-outfit fw-700" style={{ fontSize: '1.4rem', background: 'linear-gradient(135deg, #a78bfa, #06b6d4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+        <span className="font-outfit fw-700" style={{ fontSize: '1.4rem', background: 'linear-gradient(135deg, #6366f1, #0ea5e9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           ObokTy
         </span>
         <div style={{ display: 'flex', gap: 12 }}>
@@ -26,7 +26,7 @@ export default function LandingPage() {
           ✨ Language Game for International Couples
         </div>
         <h1 className="anim-fade-up" style={{ fontSize: 'clamp(2.5rem, 7vw, 5rem)', fontWeight: 800, lineHeight: 1.1, animationDelay: '0.1s', opacity: 0 }}>
-          <span style={{ background: 'linear-gradient(135deg, #c4b5fd, #a78bfa, #7c3aed)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          <span style={{ background: 'linear-gradient(135deg, #6366f1, #4f46e5, #4338ca)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
             Zawsze Obok Ty
           </span>
           <br />

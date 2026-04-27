@@ -2,30 +2,30 @@
 
 /* ── CSS Variables ─────────────────────────────────── */
 :root {
-  --bg: #07071a;
-  --bg2: #0d0d2b;
-  --glass: rgba(255, 255, 255, 0.05);
-  --glass-hover: rgba(255, 255, 255, 0.09);
-  --border: rgba(255, 255, 255, 0.1);
-  --border-hover: rgba(255, 255, 255, 0.2);
+  --bg: #ffffff;
+  --bg2: #f8fafc;
+  --glass: rgba(255, 255, 255, 0.7);
+  --glass-hover: rgba(255, 255, 255, 0.9);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.15);
 
-  --primary: #7c3aed;
-  --primary-dim: rgba(124, 58, 237, 0.2);
-  --primary-glow: 0 0 40px rgba(124, 58, 237, 0.35);
-  --secondary: #06b6d4;
+  --primary: #6366f1;
+  --primary-dim: rgba(99, 102, 241, 0.1);
+  --primary-glow: 0 0 40px rgba(99, 102, 241, 0.2);
+  --secondary: #0ea5e9;
   --accent: #f43f5e;
   --success: #10b981;
   --warning: #f59e0b;
 
-  --text: #f1f5f9;
-  --text-muted: #94a3b8;
-  --text-faint: #475569;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #94a3b8;
 
   --radius: 16px;
   --radius-sm: 8px;
   --radius-lg: 28px;
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
 }
 
 /* ── Reset & Base ──────────────────────────────────── */
@@ -217,7 +217,7 @@ a {
 }
 
 .input {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.02);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 12px 16px;
@@ -237,7 +237,7 @@ a {
 }
 
 .select {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.02);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 12px 16px;
@@ -255,7 +255,7 @@ a {
   box-shadow: 0 0 0 3px var(--primary-dim);
 }
 .select option {
-  background: #1e1b4b;
+  background: #ffffff;
 }
 
 /* ── Badges / Tags ─────────────────────────────────── */

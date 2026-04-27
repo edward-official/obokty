@@ -28,7 +28,7 @@ export default function LoginPage() {
       <div className="card anim-pop" style={{ width: '100%', maxWidth: 420, padding: '40px 36px' }}>
         {/* Logo */}
         <div className="text-center" style={{ marginBottom: 32 }}>
-          <div className="font-outfit fw-700" style={{ fontSize: '1.8rem', background: 'linear-gradient(135deg, #a78bfa, #06b6d4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 6 }}>ObokTy</div>
+          <div className="font-outfit fw-700" style={{ fontSize: '1.8rem', background: 'linear-gradient(135deg, #6366f1, #0ea5e9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 6 }}>ObokTy</div>
           <p className="text-muted text-sm">Log in to your account</p>
         </div>
 

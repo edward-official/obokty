@@ -146,7 +146,7 @@ export default function LobbyPage() {
           className="font-outfit fw-700"
           style={{
             fontSize: "1.4rem",
-            background: "linear-gradient(135deg, #a78bfa, #06b6d4)",
+            background: "linear-gradient(135deg, #6366f1, #0ea5e9)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}

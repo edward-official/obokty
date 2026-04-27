@@ -116,7 +116,7 @@ export default function GamePage() {
 
         {/* Header */}
         <div className="row" style={{ justifyContent: 'space-between', marginBottom: 24 }}>
-          <span className="font-outfit fw-700" style={{ fontSize: '1.2rem', background: 'linear-gradient(135deg, #a78bfa, #06b6d4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>ObokTy</span>
+          <span className="font-outfit fw-700" style={{ fontSize: '1.2rem', background: 'linear-gradient(135deg, #6366f1, #0ea5e9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>ObokTy</span>
           {phase === 'playing' && round && (
             <span className="badge badge-primary">Round {round.round} / {config.total_rounds}</span>
           )}
