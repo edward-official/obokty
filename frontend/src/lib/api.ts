@@ -10,7 +10,7 @@ export const getToken = (): string | null => {
 
 export const setToken = (token: string) => {
   localStorage.setItem('obokty_token', token);
-  document.cookie = `obokty_token=${token}; path=/; max-age=86400; SameSite=Lax`;
+  document.cookie = `obokty_token=${token}; path=/; max-age=86400; SameSite=Lax; Secure`;
 };
 
 export const removeToken = () => {
@@ -78,6 +78,10 @@ export async function getCoupleRequests(token: string) {
   const res = await fetch(`${AUTH_URL}/couple/requests`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail ?? '커플 요청 조회 실패');
+  }
   return res.json();
 }
 
@@ -111,5 +115,9 @@ export async function getHistory(token: string) {
   const res = await fetch(`${GAME_URL}/game/sessions/history`, {
     headers: { Authorization: `Bearer ${token}` },
   });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail ?? '전적 조회 실패');
+  }
   return res.json();
 }
