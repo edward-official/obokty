@@ -1,5 +1,8 @@
 # 환경변수 (절대 커밋 금지)
 .env
+.env.*
+# 단, .example 파일은 템플릿이므로 커밋 허용
+!.env.*.example
 
 # Python
 __pycache__/
@@ -15,5 +18,13 @@ frontend/.next/
 # Docker
 *.log
 
+# SSL 인증서 (Let's Encrypt) - 서버에서만 관리
+/etc/letsencrypt/
+
+# IDE
+.vscode/
+.idea/
+
 # OS
 .DS_Store
+Thumbs.db
