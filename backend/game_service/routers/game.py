@@ -50,7 +50,7 @@ def get_history(current_user: dict = Depends(_current_user)):
         with conn.cursor() as cur:
             cur.execute(
                 """
-                SELECT id, total_rounds, time_limit_sec, winner_id, started_at, finished_at
+                SELECT id, total_rounds, time_limit_sec, winner_id, status, started_at, finished_at
                 FROM game_sessions
                 WHERE couple_id = %s OR couple_id = %s
                 ORDER BY created_at DESC
@@ -65,8 +65,9 @@ def get_history(current_user: dict = Depends(_current_user)):
                     "total_rounds": r[1],
                     "time_limit_sec": r[2],
                     "winner_id": str(r[3]) if r[3] else None,
-                    "started_at": r[4],
-                    "finished_at": r[5],
+                    "status": r[4],
+                    "started_at": r[5],
+                    "finished_at": r[6],
                 }
                 for r in rows
             ]

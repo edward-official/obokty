@@ -20,5 +20,6 @@ class HistoryItem(BaseModel):
     total_rounds: int
     time_limit_sec: int
     winner_id: Optional[str] = None
+    status: str
     started_at: Optional[datetime] = None
     finished_at: Optional[datetime] = None

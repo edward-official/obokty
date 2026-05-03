@@ -17,6 +17,7 @@ interface HistoryItem {
   session_id: string;
   total_rounds: number;
   winner_id: string | null;
+  status: string;
   started_at: string | null;
 }
 interface CoupleRequest {
@@ -72,6 +73,9 @@ export default function LobbyPage() {
       await loadData(validToken);
     }
     init();
+
+    const interval = setInterval(() => loadData(validToken), 5000);
+    return () => clearInterval(interval);
   }, [loadData, router]);
 
   const handleStart = async () => {
@@ -331,15 +335,24 @@ export default function LobbyPage() {
                     : "-"}
                 </span>
                 <span className="text-sm">{h.total_rounds} Rounds</span>
-                <span
-                  className={`badge ${h.winner_id === user.id ? "badge-success" : h.winner_id ? "badge-accent" : "badge-primary"}`}
-                >
-                  {h.winner_id === user.id
-                    ? "Win"
-                    : h.winner_id
-                      ? "Loss"
-                      : "Draw"}
-                </span>
+                {h.status === "waiting" ? (
+                  <button
+                    className="btn btn-primary btn-sm anim-pulse"
+                    onClick={() => router.push(`/game/${h.session_id}`)}
+                  >
+                    Join Game →
+                  </button>
+                ) : (
+                  <span
+                    className={`badge ${h.winner_id === user.id ? "badge-success" : h.winner_id ? "badge-accent" : "badge-primary"}`}
+                  >
+                    {h.winner_id === user.id
+                      ? "Win"
+                      : h.winner_id
+                        ? "Loss"
+                        : "Draw"}
+                  </span>
+                )}
               </div>
             ))}
           </div>
